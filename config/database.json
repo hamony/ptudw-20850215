@@ -1,0 +1,33 @@
+{
+  "development": {
+    "username": "anhkhoa",
+    "password": null,
+    "database": "aroma",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "migrationStorageTableName": "migrations"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "migrationStorageTableName": "migrations"
+  },
+  "production": {
+    "username": "rbhjtjhbdwyhys",
+    "password": "397d24fc726ca9b95f26215c9763be2344471be4f2271172eaf68bbf2993668e",
+    "database": "d98dt13s3pl90r",
+    "host": "ec2-44-207-126-176.compute-1.amazonaws.com",
+    "dialect": "postgres",
+    "dialectOptions": {
+      "ssl": {
+        "require": true,
+        "rejectUnauthorized": false
+      }
+    },
+    "use_env_variable": "DATABASE_URL",
+    "migrationStorageTableName": "migrations"
+  }
+}

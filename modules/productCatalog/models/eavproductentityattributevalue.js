@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Comment extends Model {
+  class EAVProductEntityAttributeValue extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,14 +11,15 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Comment.belongsTo(models.Product);
     }
   }
-  Comment.init({
-    comment: DataTypes.STRING
+  EAVProductEntityAttributeValue.init({
+    eav_product_entity_id: DataTypes.INTEGER,
+    eav_product_attribute_id: DataTypes.INTEGER,
+    attribute_value: DataTypes.STRING
   }, {
     sequelize,
-    modelName: 'Comment',
+    modelName: 'EAVProductEntityAttributeValue',
   });
-  return Comment;
+  return EAVProductEntityAttributeValue;
 };
