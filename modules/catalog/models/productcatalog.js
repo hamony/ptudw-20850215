@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      ProductCatalog.hasMany(models.ProductDescription, { onDelete: 'cascade'});
+      ProductCatalog.hasMany(models.ProductDescription, { foreignKey: 'product_catalog_id', onDelete: 'cascade'});
     }
   }
   ProductCatalog.init({
@@ -25,6 +25,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'ProductCatalog',
+    createdAt: 'created_at',
+    updatedAt: 'updated_at'
   });
   return ProductCatalog;
 };

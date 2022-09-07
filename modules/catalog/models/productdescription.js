@@ -12,8 +12,8 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       this.belongsTo(models.ProductCatalog, {foreignKey: 'product_catalog_id'});
-      this.hasMany(models.ProductItem, { onDelete: 'cascade' });
-      this.belongsToMany(models.EAVProductEntity, { through: models.ProductDescriptionEntity});
+      // this.hasMany(models.ProductItem, { onDelete: 'cascade' });
+      // this.belongsToMany(models.EAVProductEntity, { through: models.ProductDescriptionEntity});
     }
   }
   ProductDescription.init({
@@ -40,6 +40,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'ProductDescription',
+    createdAt: 'created_at',
+    updatedAt: 'updated_at'
   });
   return ProductDescription;
 };

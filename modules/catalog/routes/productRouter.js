@@ -1,11 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const productDescriptionController = require('../controllers/productDescriptionController');
+const productController = require('../controllers/productController');
 
-router.get('/', async (req, res) => {
-    res.locals.topProducts = await productDescriptionController.getTopProducts();
-    res.locals.products = await productDescriptionController.getAllProducts();
-    res.render('category', { banner: 'Shop Category' });
+router.get('/', async (req, res, next) => {
+    try {
+        res.locals.topProducts = await productController.getTopProducts();
+        res.locals.products = await productController.getAllProducts();
+        res.render('category', { banner: 'Shop Category' });
+    } catch (error) {
+        next(error);
+    }
 });
 
 router.get('/cart', (req, res) => {

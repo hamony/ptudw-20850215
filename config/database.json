@@ -1,9 +1,10 @@
 {
   "development": {
-    "username": "anhkhoa",
-    "password": null,
+    "username": "symfony",
+    "password": "ChangeMe",
     "database": "aroma",
     "host": "127.0.0.1",
+    "port": "60405",
     "dialect": "postgres",
     "migrationStorageTableName": "migrations"
   },

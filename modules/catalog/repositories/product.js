@@ -1,10 +1,7 @@
-const controller = {};
 const { ProductDescription, ProductCatalog } = require('../models');
-
-controller.getTopProducts = async () => {
-    try {
+class Product {
+    async getTopProducts() {
         let data = await ProductDescription.findAll({
-            attributes: {exclude: ['ProductCatalogId', 'createdAt', 'updatedAt']},
             limit: 12,
             order: [
                 ['review_rating', 'DESC']
@@ -15,15 +12,9 @@ controller.getTopProducts = async () => {
             topProducts.push(data.splice(0,3));
         }
         return topProducts;
-    } catch (error) {
-        console.log(error);
     }
-};
-
-controller.getAllProducts = () => {
-    try {
+    async getAllProducts() {
         return ProductDescription.findAll({
-            attributes: {exclude: ['ProductCatalogId', 'createdAt', 'updatedAt']},
             limit: 9,
             include: [
                 { 
@@ -31,10 +22,19 @@ controller.getAllProducts = () => {
                     attributes: { exclude: ['createdAt', 'updatedAt'] }
                 }
             ]
-        });   
-    } catch (error) {
-        console.log(error);
+        });
     }
-};
+    async getTrendingProducts() {
+        return ProductDescription.findAll({
+            order: [
+                ['review_rating', 'DESC']
+            ],
+            limit: 8,
+            include: [{model: ProductCatalog}],
+            attributes: ['id', 'name', 'image_path', 'price']
+        });
+    }
+}
 
-module.exports = controller;
+module.exports = new Product();
+
