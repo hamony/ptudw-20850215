@@ -2,8 +2,8 @@ var createError = require('http-errors');
 const express = require('express');
 const expressHbs = require('express-handlebars');
 const app = express();
-const productRouter = require('./modules/catalog/routes/productRouter');
-const indexRouter = require('./modules/catalog/routes/indexRouter');
+const ProductRouter = require('./modules/catalog/routes/ProductRouter');
+const IndexRouter = require('./modules/catalog/routes/IndexRouter');
 
 app.engine('hbs', expressHbs.engine({
     layoutsDir: __dirname + '/views/layouts',
@@ -21,8 +21,8 @@ app.use(express.static(__dirname + '/public'));
 /**
  * Router
  */
-app.use('/', indexRouter);
-app.use('/products', productRouter);
+app.use('/', IndexRouter);
+app.use('/products', ProductRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
