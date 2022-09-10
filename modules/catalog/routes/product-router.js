@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const ProductController = require('../controllers/ProductController');
-const CatalogController = require('../controllers/CatalogController');
-const BrandController = require('../controllers/BrandController');
-const AttributeController = require('../controllers/AttributeController');
+const ProductController = require('../controllers/product-controller');
+const CatalogController = require('../controllers/catalog-controller');
+const BrandController = require('../controllers/brand-controller');
+const AttributeController = require('../controllers/attribute-controller');
 
 router.get('/', async (req, res, next) => {
     try {

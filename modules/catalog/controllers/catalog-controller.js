@@ -1,5 +1,5 @@
 const controller = {};
-const Catalog = require('../repositories/Catalog');
+const Catalog = require('../repositories/catalog');
 
 controller.getAllCatalogs = () => {
     return Catalog.getAllCatalogs();

@@ -2,8 +2,8 @@ var createError = require('http-errors');
 const express = require('express');
 const expressHbs = require('express-handlebars');
 const app = express();
-const ProductRouter = require('./modules/catalog/routes/ProductRouter');
-const IndexRouter = require('./modules/catalog/routes/IndexRouter');
+const ProductRouter = require('./modules/catalog/routes/product-router');
+const IndexRouter = require('./modules/catalog/routes/index-router');
 
 app.engine('hbs', expressHbs.engine({
     layoutsDir: __dirname + '/views/layouts',

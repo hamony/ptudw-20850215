@@ -1,5 +1,5 @@
 const controller = {};
-const Brand = require('../repositories/Brand');
+const Brand = require('../repositories/brand');
 
 controller.getAllBrands = () => {
     return Brand.getAllBrands();

@@ -1,6 +1,6 @@
 const controller = {};
-const Product = require('../repositories/Product');
-const AttributeGroup = require('../repositories/AttributeGroup');
+const Product = require('../repositories/product');
+const AttributeGroup = require('../repositories/attribute-group');
 
 controller.getTopProducts = () => {
     return Product.getTopProducts();
