@@ -9,7 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       sku: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(100)
       },
       availability: {
         type: Sequelize.BOOLEAN,

@@ -1,11 +1,16 @@
 {
   "development": {
-    "username": "symfony",
-    "password": "ChangeMe",
-    "database": "aroma",
-    "host": "127.0.0.1",
-    "port": "60405",
+    "username": "rbhjtjhbdwyhys",
+    "password": "397d24fc726ca9b95f26215c9763be2344471be4f2271172eaf68bbf2993668e",
+    "database": "d98dt13s3pl90r",
+    "host": "ec2-44-207-126-176.compute-1.amazonaws.com",
     "dialect": "postgres",
+    "dialectOptions": {
+      "ssl": {
+        "require": true,
+        "rejectUnauthorized": false
+      }
+    },
     "migrationStorageTableName": "migrations"
   },
   "test": {

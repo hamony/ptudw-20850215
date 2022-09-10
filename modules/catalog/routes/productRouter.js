@@ -1,12 +1,31 @@
 const express = require('express');
 const router = express.Router();
-const productController = require('../controllers/productController');
+const ProductController = require('../controllers/ProductController');
+const CatalogController = require('../controllers/CatalogController');
+const BrandController = require('../controllers/BrandController');
+const AttributeController = require('../controllers/AttributeController');
 
 router.get('/', async (req, res, next) => {
     try {
-        res.locals.topProducts = await productController.getTopProducts();
-        res.locals.products = await productController.getAllProducts();
+        res.locals.colors = await AttributeController.getAttributes('color');
+        res.locals.brands = await BrandController.getAllBrands();
+        res.locals.catalogs = await CatalogController.getAllCatalogs();
+        res.locals.topProducts = await ProductController.getTopProducts();
+        res.locals.products = await ProductController.getAllProducts();
         res.render('category', { banner: 'Shop Category' });
+    } catch (error) {
+        next(error);
+    }
+});
+
+/**
+ * Single Product
+ */
+router.get('/:id', async (req, res, next) => {
+    try {
+        res.locals.attributes = await ProductController.getAttributesGroup('product_details', req.params.id);
+        res.locals.product = await ProductController.getById(req.params.id);
+        res.render('single-product', { banner: 'Shop Single' });   
     } catch (error) {
         next(error);
     }
@@ -18,10 +37,6 @@ router.get('/cart', (req, res) => {
 
 router.get('/checkout', (req, res) => {
     res.render('checkout', { banner: 'Product Checkout' });
-});
-
-router.get('/:id', (req, res) => {
-    res.render('single-product', { banner: 'Shop Single' });
 });
 
 router.get('/confirmation', (req, res) => {

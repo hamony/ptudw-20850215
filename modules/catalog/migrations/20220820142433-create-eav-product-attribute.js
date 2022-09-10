@@ -6,28 +6,26 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.SMALLINT
       },
-      name: {
-        type: Sequelize.STRING
+      attribute_name: {
+        type: Sequelize.STRING(150)
+      },
+      attribute_code: {
+        type: Sequelize.STRING(150)
       },
       description: {
         type: Sequelize.TEXT('tiny')
       },
       data_type: {
-        type: Sequelize.ENUM('string','integer','double','image')
+        type: Sequelize.STRING(10)
       },
-      created_at: {
-        allowNull: false,
-        type: Sequelize.DATE,
-        defaultValue: new Date()
-      },
-      updated_at: {
-        allowNull: false,
-        type: Sequelize.DATE,
-        defaultValue: new Date()
+      unit: {
+        type: Sequelize.STRING(20),
+        allowNull: true
       }
     });
+    await queryInterface.addIndex('EAVProductAttributes', ['attribute_code']);
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('EAVProductAttributes');

@@ -1,9 +1,13 @@
-const { ProductCatalog } = require('../models');
+const { ProductCatalog, ProductDescription } = require('../models');
 class Catalog {
     async getAllCatalogs() {
-        let catalogs = await ProductCatalog.findAll({
+        const catalogs = await ProductCatalog.findAll({
             attributes: ['id', 'name', 'image_path', 'summary'],
-            limit: 12
+            order: [
+                ['name', 'ASC']
+            ],
+            limit: 12,
+            include: [{model: ProductDescription}]
         });
         
         return catalogs;

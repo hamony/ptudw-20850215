@@ -1,7 +1,7 @@
 const { ProductDescription, ProductCatalog } = require('../models');
 class Product {
     async getTopProducts() {
-        let data = await ProductDescription.findAll({
+        const data = await ProductDescription.findAll({
             limit: 12,
             order: [
                 ['review_rating', 'DESC']
@@ -13,7 +13,7 @@ class Product {
         }
         return topProducts;
     }
-    async getAllProducts() {
+    getAllProducts() {
         return ProductDescription.findAll({
             limit: 9,
             include: [
@@ -24,7 +24,7 @@ class Product {
             ]
         });
     }
-    async getTrendingProducts() {
+    getTrendingProducts() {
         return ProductDescription.findAll({
             order: [
                 ['review_rating', 'DESC']
@@ -32,6 +32,12 @@ class Product {
             limit: 8,
             include: [{model: ProductCatalog}],
             attributes: ['id', 'name', 'image_path', 'price']
+        });
+    }
+    getById(id) {
+        return ProductDescription.findOne({
+            where: {id: id},
+            include: [{model: ProductCatalog}],
         });
     }
 }

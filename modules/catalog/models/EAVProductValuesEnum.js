@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class EAVProductAttribute extends Model {
+  class EAVProductValueEnum extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,19 +11,21 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      EAVProductAttribute.belongsToMany(models.EAVProductEntity,{through: models.EAVProductEntityAttributeValue});
     }
   }
-  EAVProductAttribute.init({
-    name: DataTypes.STRING,
-    description: DataTypes.TEXT,
-    data_type: {
+  EAVProductValueEnum.init({
+    entity_id: DataTypes.INTEGER,
+    attribute_id: DataTypes.SMALLINT,
+    attribute_value: {
       type: DataTypes.ENUM,
-      values: ['string','integer','double','image']
-    }
+      values: ['yes','no']
+    },
+    attribute_group_id: DataTypes.SMALLINT
   }, {
     sequelize,
-    modelName: 'EAVProductAttribute',
+    modelName: 'EAVProductValueEnum',
+    tableName: 'EAVProductValuesEnum',
+    timestamps: false
   });
-  return EAVProductAttribute;
+  return EAVProductValueEnum;
 };

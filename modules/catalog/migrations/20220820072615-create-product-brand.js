@@ -9,7 +9,7 @@ module.exports = {
         type: Sequelize.SMALLINT
       },
       name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(150)
       },
       description: {
         type: Sequelize.TEXT('tiny')

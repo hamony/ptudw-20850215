@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class ProductItem extends Model {
+  class EAVPivotGroupAttribute extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,16 +11,16 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.belongsTo(models.ProductDescription);
     }
   }
-  ProductItem.init({
-    sku: DataTypes.STRING,
-    availability: DataTypes.BOOLEAN,
-    product_description_id: DataTypes.INTEGER
+  EAVPivotGroupAttribute.init({
+    attribute_group_id: DataTypes.SMALLINT,
+    attribute_id: DataTypes.SMALLINT,
+    sort_order: DataTypes.SMALLINT
   }, {
     sequelize,
-    modelName: 'ProductItem',
+    modelName: 'EAVPivotGroupAttribute',
+    timestamps: false,
   });
-  return ProductItem;
+  return EAVPivotGroupAttribute;
 };

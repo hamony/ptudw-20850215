@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class EAVProductEntityAttributeValue extends Model {
+  class EAVProductValueInt extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -13,13 +13,16 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  EAVProductEntityAttributeValue.init({
-    eav_product_entity_id: DataTypes.INTEGER,
-    eav_product_attribute_id: DataTypes.INTEGER,
-    attribute_value: DataTypes.STRING
+  EAVProductValueInt.init({
+    entity_id: DataTypes.INTEGER,
+    attribute_id: DataTypes.SMALLINT,
+    attribute_value: DataTypes.INTEGER,
+    attribute_group_id: DataTypes.SMALLINT
   }, {
     sequelize,
-    modelName: 'EAVProductEntityAttributeValue',
+    modelName: 'EAVProductValueInt',
+    tableName: 'EAVProductValuesInt',
+    timestamps: false
   });
-  return EAVProductEntityAttributeValue;
+  return EAVProductValueInt;
 };

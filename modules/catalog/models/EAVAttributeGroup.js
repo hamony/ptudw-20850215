@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class ProductDescriptionEntity extends Model {
+  class EAVAttributeGroup extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -13,12 +13,13 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  ProductDescriptionEntity.init({
-    production_description_id: DataTypes.INTEGER,
-    eav_product_entity_id: DataTypes.INTEGER
+  EAVAttributeGroup.init({
+    attribute_group_name: DataTypes.STRING,
+    attribute_group_code: DataTypes.STRING
   }, {
     sequelize,
-    modelName: 'ProductDescriptionEntity',
+    modelName: 'EAVAttributeGroup',
+    timestamps: false,
   });
-  return ProductDescriptionEntity;
+  return EAVAttributeGroup;
 };

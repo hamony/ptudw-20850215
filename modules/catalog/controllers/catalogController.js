@@ -1,7 +1,7 @@
 const controller = {};
-const Catalog = require('../repositories/catalog');
+const Catalog = require('../repositories/Catalog');
 
-controller.getAllCatalogs = async () => {
+controller.getAllCatalogs = () => {
     return Catalog.getAllCatalogs();
 };
 

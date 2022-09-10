@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const catalogController = require('../controllers/catalogController');
+const CatalogController = require('../controllers/CatalogController');
 
-router.get('/', async (req, res, next) => {
+router.get('/', (req, res, next) => {
     try {
         
     } catch (error) {
