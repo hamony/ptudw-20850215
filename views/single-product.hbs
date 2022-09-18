@@ -31,10 +31,10 @@
               <label for="qty">Quantity:</label>
               <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
 							 class="increase items-count" type="button"><i class="ti-angle-left"></i></button>
-							<input type="text" name="qty" id="sst" size="2" maxlength="12" value="1" title="Quantity:" class="input-text qty">
+							<input type="text" name="qty" id="sst" size="2" maxlength="12" value="1" title="Quantity:" class="input-text qty" readonly>
 							<button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
                class="reduced items-count" type="button"><i class="ti-angle-right"></i></button>
-							<a class="button primary-btn" href="#">Add to Cart</a>               
+							<a class="button primary-btn add-to-cart" data-id="{{id}}" href="#">Add to Cart</a>               
 						</div>
 						<div class="card_area d-flex align-items-center">
 							<a class="icon_btn" href="#"><i class="lnr lnr lnr-diamond"></i></a>
@@ -95,51 +95,36 @@
 					<div class="row">
 						<div class="col-lg-6">
 							<div class="comment_list">
+								{{#each comments}}
 								<div class="review_item">
 									<div class="media">
 										<div class="d-flex">
-											<img src="img/product/review-1.png" alt="">
+											<img src="{{Customer.avatar_path}}" alt="">
 										</div>
 										<div class="media-body">
-											<h4>Blake Ruiz</h4>
-											<h5>12th Feb, 2018 at 05:56 pm</h5>
+											<h4>{{Customer.fullname}}</h4>
+											<h5>{{created_at}}</h5>
 											<a class="reply_btn" href="#">Reply</a>
 										</div>
 									</div>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-										dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-										commodo</p>
+									<p>{{message}}</p>
 								</div>
-								<div class="review_item reply">
-									<div class="media">
-										<div class="d-flex">
-											<img src="img/product/review-2.png" alt="">
+								{{#each SubComments}}
+									<div class="review_item reply">
+										<div class="media">
+											<div class="d-flex">
+												<img src="{{Customer.avatar_path}}" alt="">
+											</div>
+											<div class="media-body">
+												<h4>{{Customer.fullname}}</h4>
+												<h5>{{created_at}}</h5>
+												<a class="reply_btn" href="#">Reply</a>
+											</div>
 										</div>
-										<div class="media-body">
-											<h4>Blake Ruiz</h4>
-											<h5>12th Feb, 2018 at 05:56 pm</h5>
-											<a class="reply_btn" href="#">Reply</a>
-										</div>
+										<p>{{message}}</p>
 									</div>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-										dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-										commodo</p>
-								</div>
-								<div class="review_item">
-									<div class="media">
-										<div class="d-flex">
-											<img src="img/product/review-3.png" alt="">
-										</div>
-										<div class="media-body">
-											<h4>Blake Ruiz</h4>
-											<h5>12th Feb, 2018 at 05:56 pm</h5>
-											<a class="reply_btn" href="#">Reply</a>
-										</div>
-									</div>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-										dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-										commodo</p>
-								</div>
+								{{/each}}
+								{{/each}}
 							</div>
 						</div>
 						<div class="col-lg-6">
@@ -180,84 +165,37 @@
 							<div class="row total_rate">
 								<div class="col-6">
 									<div class="box_total">
+										{{#with product}}
 										<h5>Overall</h5>
-										<h4>4.0</h4>
-										<h6>(03 Reviews)</h6>
+										<h4>{{review_rating}}</h4>
+										<h6>({{review_count}} Reviews)</h6>
+										{{/with}}
 									</div>
 								</div>
 								<div class="col-6">
 									<div class="rating_list">
-										<h3>Based on 3 Reviews</h3>
-										<ul class="list">
-											<li><a href="#">5 Star <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
-													 class="fa fa-star"></i><i class="fa fa-star"></i> 01</a></li>
-											<li><a href="#">4 Star <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
-													 class="fa fa-star"></i><i class="fa fa-star"></i> 01</a></li>
-											<li><a href="#">3 Star <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
-													 class="fa fa-star"></i><i class="fa fa-star"></i> 01</a></li>
-											<li><a href="#">2 Star <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
-													 class="fa fa-star"></i><i class="fa fa-star"></i> 01</a></li>
-											<li><a href="#">1 Star <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
-													 class="fa fa-star"></i><i class="fa fa-star"></i> 01</a></li>
-										</ul>
+										{{#with product}}
+										<h3>Based on {{review_count}} Reviews</h3>
+										{{/with}}
+										{{{createStarList stars}}}
 									</div>
 								</div>
 							</div>
 							<div class="review_list">
+								{{#each reviews}}
 								<div class="review_item">
 									<div class="media">
 										<div class="d-flex">
-											<img src="img/product/review-1.png" alt="">
+											<img src="{{Customer.avatar_path}}" alt="">
 										</div>
 										<div class="media-body">
-											<h4>Blake Ruiz</h4>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
+											<h4>{{Customer.fullname}}</h4>
+											{{{createStars rating}}}
 										</div>
 									</div>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-										dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-										commodo</p>
+									<p>{{message}}</p>
 								</div>
-								<div class="review_item">
-									<div class="media">
-										<div class="d-flex">
-											<img src="img/product/review-2.png" alt="">
-										</div>
-										<div class="media-body">
-											<h4>Blake Ruiz</h4>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-										</div>
-									</div>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-										dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-										commodo</p>
-								</div>
-								<div class="review_item">
-									<div class="media">
-										<div class="d-flex">
-											<img src="img/product/review-3.png" alt="">
-										</div>
-										<div class="media-body">
-											<h4>Blake Ruiz</h4>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-										</div>
-									</div>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-										dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-										commodo</p>
-								</div>
+								{{/each}}
 							</div>
 						</div>
 						<div class="col-lg-6">

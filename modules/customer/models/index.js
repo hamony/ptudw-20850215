@@ -25,10 +25,6 @@ fs
     db[model.name] = model;
   });
 
-// Cohesion between 2 modules
-const Customer = require('../../customer/models/customer')(sequelize, Sequelize.DataTypes);
-db[Customer.name] = Customer;
-
 Object.keys(db).forEach(modelName => {
   if (db[modelName].associate) {
     db[modelName].associate(db);

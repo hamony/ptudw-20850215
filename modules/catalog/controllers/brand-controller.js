@@ -1,8 +1,8 @@
 const controller = {};
-const Brand = require('../repositories/brand');
+const BrandRepository = require('../repositories/brand-repository');
 
-controller.getAllBrands = () => {
-    return Brand.getAllBrands();
+controller.getAllBrands = (query) => {
+    return BrandRepository.getAllBrands(query);
 };
 
 module.exports = controller;

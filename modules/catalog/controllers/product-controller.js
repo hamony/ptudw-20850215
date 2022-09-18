@@ -1,13 +1,13 @@
 const controller = {};
-const Product = require('../repositories/product');
-const AttributeGroup = require('../repositories/attribute-group');
+const Product = require('../repositories/product-repository');
+const AttributeGroupRepository = require('../repositories/attribute-group-repository');
 
 controller.getTopProducts = () => {
     return Product.getTopProducts();
 };
 
-controller.getAllProducts = () => {
-    return Product.getAllProducts();
+controller.getAllProducts = (query) => {
+    return Product.getAllProducts(query);
 };
 
 controller.getTrendingProducts = () => {
@@ -19,7 +19,7 @@ controller.getById = (id) => {
 };
 
 controller.getAttributesGroup = (attribute_group_name, id) => {
-    return AttributeGroup.getAttributesGroup(attribute_group_name, id);
+    return AttributeGroupRepository.getAttributesGroup(attribute_group_name, id);
 };
 
 module.exports = controller;

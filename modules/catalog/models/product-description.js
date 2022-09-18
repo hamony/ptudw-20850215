@@ -12,8 +12,9 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       this.belongsTo(models.ProductCatalog, {foreignKey: 'product_catalog_id'});
-      // this.hasMany(models.ProductItem, { onDelete: 'cascade' });
-      // this.belongsToMany(models.EAVProductEntity, { through: models.ProductDescriptionEntity});
+      this.hasMany(models.Comment, { foreignKey: 'product_id', onDelete: 'cascade' });
+      this.hasMany(models.Review, { foreignKey: 'product_id', onDelete: 'cascade' });
+      this.hasMany(models.EAVProductValueVarchar, {foreignKey: 'entity_id'});
     }
   }
   ProductDescription.init({

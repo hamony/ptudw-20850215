@@ -1,8 +1,8 @@
 const controller = {};
-const Catalog = require('../repositories/catalog');
+const CatalogRepository = require('../repositories/catalog-repository');
 
-controller.getAllCatalogs = () => {
-    return Catalog.getAllCatalogs();
+controller.getAllCatalogs = (query) => {
+    return CatalogRepository.getAllCatalogs(query);
 };
 
 module.exports = controller;

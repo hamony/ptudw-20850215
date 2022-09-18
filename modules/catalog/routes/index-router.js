@@ -5,7 +5,7 @@ const ProductController = require('../controllers/product-controller');
 
 router.get('/', async (req, res, next) => {
     try {
-        res.locals.catalogs = await CatalogController.getAllCatalogs();
+        res.locals.catalogs = await CatalogController.getAllCatalogs(req.query);
         res.locals.trendingProducts = await ProductController.getTrendingProducts();
         res.render('index');   
     } catch (error) {
