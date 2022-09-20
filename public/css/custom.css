@@ -3,3 +3,16 @@
 .product_description_area .tab-content .total_rate .rating_list .list li a i.disable {
     color: lightgray;
 }
+.product_count .reduced, .product_count .increase {
+    transform: rotate(90deg);
+    width: 10px;
+    height: 10px;
+    left: 130px;
+}
+.product_count .increase {
+    top: 5px;
+}
+
+.product_count .reduced {
+    bottom: 20px;
+}
