@@ -18,6 +18,9 @@ class CommentRepository {
         
         return comments;
     }
+    add(comment){
+        return Comment.create(comment);
+    }
 }
 
 module.exports = new CommentRepository();

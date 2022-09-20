@@ -58,11 +58,13 @@ router.get('/', async (req, res, next) => {
  */
 router.get('/:id', async (req, res, next) => {
     try {
-        res.locals.comments = await CommentController.getAllCommentsByProductId(req.params.id);
-        res.locals.reviews = await ReviewController.getAllReviewsByProductId(req.params.id);
-        res.locals.stars = await ReviewController.getAllStarsByProductId(req.params.id);
-        res.locals.attributes = await ProductController.getAttributesGroup('product_details', req.params.id);
         res.locals.product = await ProductController.getById(req.params.id);
+        res.locals.product.comments = await CommentController.getAllCommentsByProductId(req.params.id);
+        res.locals.product.reviews = await ReviewController.getAllReviewsByProductId(req.params.id);
+        res.locals.product.customerReview = await ReviewController.getReviewByCustomerIdProductId(req.session.customer ? req.session.customer.id : 0, req.params.id);
+        res.locals.product.stars = await ReviewController.getAllStarsByProductId(req.params.id);
+        res.locals.product.attributes = await ProductController.getAttributesGroup('product_details', req.params.id);
+        res.locals.topProducts = await ProductController.getTopProducts();
         res.render('single-product', { banner: 'Shop Single' });   
     } catch (error) {
         next(error);

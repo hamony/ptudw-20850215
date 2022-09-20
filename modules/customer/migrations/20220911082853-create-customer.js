@@ -15,9 +15,6 @@ module.exports = {
       password: {
         type: Sequelize.STRING
       },
-      salt: {
-        type: Sequelize.STRING
-      },
       fullname: {
         type: Sequelize.STRING
       },

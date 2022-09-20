@@ -11,13 +11,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.hasMany(models.Comment, { onDelete: 'cascade' });
+      this.hasMany(models.Comment, { foreignKey: 'customer_id', onDelete: 'cascade' });
     }
   }
   Customer.init({
     username: DataTypes.STRING,
     password: DataTypes.STRING,
-    salt: DataTypes.STRING,
     fullname: DataTypes.STRING,
     avatar_path: DataTypes.STRING,
     created_at: DataTypes.DATE,
