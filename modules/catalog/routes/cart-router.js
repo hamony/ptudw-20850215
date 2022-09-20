@@ -6,7 +6,7 @@ router.get('/', (req, res, next) => {
     try {
         const cart = req.session.cart;
         res.locals.cart = cart.getCart();
-        res.render('cart');
+        res.render('cart', { banner: 'Shopping Cart' });
     } catch (error) {
         next(error);
     }
